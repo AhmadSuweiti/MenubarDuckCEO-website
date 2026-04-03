@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duck CEO — Your Mac's Most Opinionated Executive</title>
     <meta name="description" content="A tiny duck lives in your macOS menu bar and roasts your habits like an overconfident corporate executive. Free download.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦆</text></svg>">
+    <link rel="icon" href="AppIcon.png" type="image/png">
+    <link rel="apple-touch-icon" href="AppIcon.png">
+    <meta property="og:image" content="AppIcon.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- NAV -->
     <nav class="nav">
         <div class="nav-inner">
-            <a href="#" class="nav-logo">🦆 Duck CEO</a>
+            <a href="#" class="nav-logo"><img src="AppIcon.png" alt="Duck CEO" class="nav-icon"> Duck CEO</a>
             <div class="nav-links">
                 <a href="#features">Features</a>
                 <a href="#pricing">Pricing</a>
@@ -32,6 +34,9 @@
             <div class="hero-badge">macOS Menu Bar App</div>
             <h1>Your Mac has a new <span class="gradient-text">CEO.</span></h1>
             <p class="hero-sub">A tiny duck lives in your menu bar and roasts your desktop chaos, battery drama, and fake productivity — like an overconfident corporate executive.</p>
+            <div class="hero-duck-container">
+                <canvas id="hero-duck" class="hero-duck-canvas"></canvas>
+            </div>
             <div class="hero-buttons">
                 <a href="#download" class="btn btn-lg btn-primary">
                     <span>Download Free</span>
@@ -54,7 +59,7 @@
                     <span class="dot green"></span>
                 </div>
                 <div class="mockup-content">
-                    <div class="mock-duck">🦆</div>
+                    <div class="mock-duck"><canvas id="mockup-duck"></canvas></div>
                     <div class="mock-bubble">
                         <div class="mock-label">DESKTOP CHAOS</div>
                         <div class="mock-text">That desktop is not a filing system. It's a crime scene.</div>
@@ -229,6 +234,23 @@
                 <h2>Lives on Your Screen</h2>
                 <p>A pixel-art duck walks along the top of your screen, climbs the MacBook notch with a grappling hook, and thinks its memos in floating thought bubbles.</p>
             </div>
+
+            <!-- MacBook Notch Mockup -->
+            <div class="notch-mockup">
+                <div class="notch-screen">
+                    <div class="notch-bar">
+                        <div class="notch-camera"></div>
+                    </div>
+                    <div class="notch-duck-area">
+                        <canvas id="notch-duck-left" class="notch-duck-sprite"></canvas>
+                        <div class="notch-thought">
+                            <div class="notch-thought-label">DESKTOP CHAOS</div>
+                            <div class="notch-thought-text">The board convenes immediately.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="notch-features">
                 <div class="notch-feature">
                     <strong>8 Animation States</strong>
@@ -401,6 +423,11 @@
         </div>
     </section>
 
+    <!-- WALKING DUCK -->
+    <div class="walking-duck-bar">
+        <canvas id="walking-duck"></canvas>
+    </div>
+
     <!-- FOOTER -->
     <footer class="footer">
         <div class="container footer-inner">
@@ -421,6 +448,7 @@
         </div>
     </footer>
 
+    <script src="duck.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

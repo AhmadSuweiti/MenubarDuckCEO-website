@@ -66,6 +66,15 @@ body {
     font-weight: 800;
     color: var(--yellow);
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
 }
 
 .nav-links {
@@ -278,8 +287,148 @@ body {
 }
 
 .mock-duck {
-    font-size: 48px;
     margin-bottom: 16px;
+}
+
+.mock-duck canvas {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+/* Hero duck */
+.hero-duck-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+}
+
+.hero-duck-canvas {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    filter: drop-shadow(0 4px 20px rgba(255,215,0,0.3));
+}
+
+/* Walking duck bar */
+.walking-duck-bar {
+    position: relative;
+    height: 60px;
+    overflow: hidden;
+    background: var(--dark2);
+    border-top: 1px solid rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.walking-duck-bar canvas {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+/* Notch mockup */
+.notch-mockup {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 48px;
+}
+
+.notch-screen {
+    width: 600px;
+    max-width: 100%;
+    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 16px;
+    border: 2px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    position: relative;
+}
+
+.notch-bar {
+    display: flex;
+    justify-content: center;
+    padding-top: 0;
+    position: relative;
+    height: 32px;
+    background: #0a0a0a;
+}
+
+.notch-camera {
+    width: 180px;
+    height: 32px;
+    background: #000;
+    border-radius: 0 0 16px 16px;
+    position: relative;
+}
+
+.notch-camera::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #1a1a2e;
+    border: 2px solid #333;
+}
+
+.notch-duck-area {
+    display: flex;
+    align-items: flex-start;
+    padding: 8px 24px 40px;
+    gap: 16px;
+}
+
+.notch-duck-sprite {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    flex-shrink: 0;
+}
+
+.notch-thought {
+    background: rgba(255,255,255,0.95);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-top: 4px;
+    max-width: 260px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.notch-thought::before {
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: 12px;
+    width: 12px;
+    height: 12px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 50%;
+}
+
+.notch-thought::after {
+    content: "";
+    position: absolute;
+    left: -16px;
+    top: 18px;
+    width: 7px;
+    height: 7px;
+    background: rgba(255,255,255,0.90);
+    border-radius: 50%;
+}
+
+.notch-thought-label {
+    font-size: 9px;
+    font-weight: 800;
+    color: #8B6914;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.notch-thought-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.4;
 }
 
 .mock-bubble {
