@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Complete — Duck CEO Pro</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦆</text></svg>">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .success-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 24px;
+        }
+        .success-card {
+            background: var(--dark2);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            max-width: 520px;
+            border: 1px solid rgba(255,215,0,0.2);
+            box-shadow: 0 0 60px rgba(255,215,0,0.08);
+        }
+        .success-duck { font-size: 72px; margin-bottom: 20px; }
+        .success-card h1 { font-size: 28px; font-weight: 800; margin-bottom: 12px; }
+        .success-card p { color: var(--gray); font-size: 15px; line-height: 1.7; margin-bottom: 16px; }
+        .license-box {
+            background: var(--dark3);
+            border: 1px solid rgba(255,215,0,0.2);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin: 24px 0;
+        }
+        .license-box .label { font-size: 11px; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .license-box .key {
+            font-size: 22px;
+            font-weight: 800;
+            font-family: 'SF Mono', Menlo, monospace;
+            color: var(--yellow);
+            letter-spacing: 2px;
+            word-break: break-all;
+        }
+        .steps { text-align: left; margin: 24px 0; }
+        .steps li { padding: 8px 0; font-size: 14px; color: var(--gray); }
+        .steps li strong { color: var(--white); }
+    </style>
+</head>
+<body>
+    <div class="success-page">
+        <div class="success-card">
+            <div class="success-duck">🦆</div>
+            <h1>Welcome to Duck CEO Pro!</h1>
+            <p>Your purchase was successful. The board is pleased.</p>
+
+            <div class="license-box">
+                <div class="label">Your License Key</div>
+                <div class="key" id="license-key">Check your email</div>
+            </div>
+
+            <p>Your license key has been sent to your email. You can also find it above once the page loads.</p>
+
+            <ol class="steps">
+                <li><strong>Open Duck CEO</strong> on your Mac</li>
+                <li>Click the duck &rarr; <strong>Settings</strong> (gear icon)</li>
+                <li>Find the <strong>LICENSE</strong> section at the top</li>
+                <li>Paste your key and click <strong>Activate License</strong></li>
+            </ol>
+
+            <a href="index.html" class="btn btn-lg btn-outline" style="margin-top:16px;">Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        // If Stripe passes session_id, we could fetch the license key from our backend.
+        // For now, the key is delivered via the Stripe webhook → email flow.
+        const params = new URLSearchParams(window.location.search);
+        const sessionId = params.get("session_id");
+        if (sessionId) {
+            // Optionally fetch the license key from backend
+            fetch("https://asdeammiiwokuwlxqkmc.supabase.co/functions/v1/get-license?session_id=" + sessionId)
+                .then(r => r.json())
+                .then(data => {
+                    if (data.licenseKey) {
+                        document.getElementById("license-key").textContent = data.licenseKey;
+                    }
+                })
+                .catch(() => {});
+        }
+    </script>
+</body>
+</html>
