@@ -550,7 +550,30 @@ section { padding: 100px 0; }
 
 .tone-card:hover { transform: translateY(-3px); }
 
-.tone-emoji { font-size: 28px; display: block; margin-bottom: 8px; }
+.tone-emoji {
+    font-size: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 34px;
+    margin-bottom: 8px;
+}
+
+.tone-emoji canvas {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+/* Inline pixel ducks */
+[data-pixel-duck] canvas,
+.download-icon canvas,
+.footer-brand canvas,
+.price-header canvas {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    display: inline-block;
+    vertical-align: middle;
+}
 
 .tone-card strong { display: block; font-size: 14px; margin-bottom: 4px; }
 

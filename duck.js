@@ -199,6 +199,51 @@ function initNotchDuck() {
     setInterval(animate, 800);
 }
 
+// ---- Inline pixel duck (replaces emoji with tiny canvas) ----
+
+function replaceEmojiDucks() {
+    // Find all elements with data-duck attribute OR containing 🦆 text
+    document.querySelectorAll("[data-pixel-duck]").forEach(el => {
+        const size = parseInt(el.getAttribute("data-pixel-duck")) || 24;
+        const canvas = createInlineDuck(size);
+        el.innerHTML = "";
+        el.appendChild(canvas);
+    });
+
+    // Auto-replace 🦆 emoji in specific containers
+    const targets = document.querySelectorAll(
+        ".footer-brand span, .download-icon, .price-header h3, .tone-emoji, .success-duck"
+    );
+    targets.forEach(el => {
+        if (el.textContent.includes("🦆")) {
+            const text = el.textContent;
+            const parts = text.split("🦆");
+            el.innerHTML = "";
+            parts.forEach((part, i) => {
+                if (part) el.appendChild(document.createTextNode(part));
+                if (i < parts.length - 1) {
+                    const size = el.classList.contains("tone-emoji") ? 28 :
+                                 el.classList.contains("download-icon") ? 36 :
+                                 el.classList.contains("success-duck") ? 72 : 22;
+                    el.appendChild(createInlineDuck(size));
+                }
+            });
+        }
+    });
+}
+
+function createInlineDuck(size) {
+    const canvas = document.createElement("canvas");
+    const scale = size / 10; // 10 rows
+    canvas.style.imageRendering = "pixelated";
+    canvas.style.display = "inline-block";
+    canvas.style.verticalAlign = "middle";
+    canvas.style.width = (12 * scale) + "px";
+    canvas.style.height = (10 * scale) + "px";
+    drawDuck(canvas, DUCK_WALK_A, Math.max(2, Math.ceil(scale)));
+    return canvas;
+}
+
 // ---- Init all ----
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -206,4 +251,5 @@ document.addEventListener("DOMContentLoaded", () => {
     initMockupDuck();
     initWalkingDuck();
     initNotchDuck();
+    replaceEmojiDucks();
 });
